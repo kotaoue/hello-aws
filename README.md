@@ -4,91 +4,58 @@ I want to resolve my AWS questions.
 
 ---
 
-## ローカルで AWS CLI を使えるようにする手順
+## Getting started with AWS CLI locally
 
-### 前提条件
+### Prerequisites
 
-- AWS アカウントを持っていること
-- IAM ユーザーの **アクセスキー ID** と **シークレットアクセスキー** を発行済みであること
+- An AWS account with an IAM user that has an **Access Key ID** and **Secret Access Key**
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed
 
-### 1. AWS CLI のインストール
-
-**macOS (Homebrew)**
-```bash
-brew install awscli
-```
-
-**Linux**
-```bash
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-```
-
-**Windows**
-```powershell
-msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
-```
-
-インストールの確認:
-```bash
-aws --version
-```
-
-### 2. クレデンシャルの設定
+### 1. Configure credentials
 
 ```bash
 aws configure
 ```
 
-対話形式で以下の情報を入力します:
+Enter your credentials when prompted:
 
 ```
-AWS Access Key ID [None]: <アクセスキー ID>
-AWS Secret Access Key [None]: <シークレットアクセスキー>
+AWS Access Key ID [None]: <your-access-key-id>
+AWS Secret Access Key [None]: <your-secret-access-key>
 Default region name [None]: ap-northeast-1
 Default output format [None]: json
 ```
 
-入力した情報は以下のファイルに保存されます:
+Credentials are saved to `~/.aws/credentials` and `~/.aws/config`.
 
-| ファイル | 内容 |
-|---|---|
-| `~/.aws/credentials` | アクセスキー ID・シークレットアクセスキー |
-| `~/.aws/config` | リージョン・出力形式 |
-
-### 3. 動作確認
-
-設定が正しいかどうかを確認するには、以下のコマンドを実行します:
+### 2. Verify the setup
 
 ```bash
-# 認証情報の確認
+# Check the authenticated identity
 aws sts get-caller-identity
 
-# S3 バケット一覧の取得
+# List S3 buckets
 aws s3 ls
 
-# EC2 インスタンス一覧の取得
+# List EC2 instances
 aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,State.Name]' --output table
 ```
 
-### 4. 複数プロファイルの管理（オプション）
-
-複数の AWS アカウントや IAM ユーザーを使い分けたい場合は、`--profile` オプションを活用します。
+### 3. Using multiple profiles (optional)
 
 ```bash
-# 新しいプロファイルを追加する
-aws configure --profile <プロファイル名>
+# Add a named profile
+aws configure --profile <profile-name>
 
-# プロファイルを指定してコマンドを実行する
-aws s3 ls --profile <プロファイル名>
+# Use a specific profile
+aws s3 ls --profile <profile-name>
 
-# 環境変数でデフォルトプロファイルを指定する
-export AWS_PROFILE=<プロファイル名>
+# Set a default profile via environment variable
+export AWS_PROFILE=<profile-name>
 aws s3 ls
 ```
 
-### 参考資料
+### References
 
-- [AWS CLI のインストールと設定 (公式)](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/getting-started-install.html)
-- [AWS CLI の設定ファイルと認証情報ファイルの設定 (公式)](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-configure-files.html)
+- [Install or update the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- [Configuration and credential file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
