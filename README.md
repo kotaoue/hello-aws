@@ -11,49 +11,51 @@ I want to resolve my AWS questions.
 - An AWS account with an IAM user that has an **Access Key ID** and **Secret Access Key**
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed
 
-### 1. Configure credentials
+### Steps
 
-```bash
-aws configure
-```
+1. **Configure credentials**
 
-Enter your credentials when prompted:
+   ```bash
+   aws configure
+   ```
 
-```
-AWS Access Key ID [None]: <your-access-key-id>
-AWS Secret Access Key [None]: <your-secret-access-key>
-Default region name [None]: ap-northeast-1
-Default output format [None]: json
-```
+   Enter your credentials when prompted:
 
-Credentials are saved to `~/.aws/credentials` and `~/.aws/config`.
+   ```
+   AWS Access Key ID [None]: <your-access-key-id>
+   AWS Secret Access Key [None]: <your-secret-access-key>
+   Default region name [None]: ap-northeast-1
+   Default output format [None]: json
+   ```
 
-### 2. Verify the setup
+   Credentials are saved to `~/.aws/credentials` and `~/.aws/config`.
 
-```bash
-# Check the authenticated identity
-aws sts get-caller-identity
+2. **Verify the setup**
 
-# List S3 buckets
-aws s3 ls
+   ```bash
+   # Check the authenticated identity
+   aws sts get-caller-identity
 
-# List EC2 instances
-aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,State.Name]' --output table
-```
+   # List S3 buckets
+   aws s3 ls
 
-### 3. Using multiple profiles (optional)
+   # List EC2 instances
+   aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,State.Name]' --output table
+   ```
 
-```bash
-# Add a named profile
-aws configure --profile <profile-name>
+3. **Use multiple profiles (optional)**
 
-# Use a specific profile
-aws s3 ls --profile <profile-name>
+   ```bash
+   # Add a named profile
+   aws configure --profile <profile-name>
 
-# Set a default profile via environment variable
-export AWS_PROFILE=<profile-name>
-aws s3 ls
-```
+   # Use a specific profile
+   aws s3 ls --profile <profile-name>
+
+   # Set a default profile via environment variable
+   export AWS_PROFILE=<profile-name>
+   aws s3 ls
+   ```
 
 ### References
 
