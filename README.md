@@ -21,7 +21,7 @@ I want to resolve my AWS questions.
 
    Enter your credentials when prompted:
 
-   ```
+   ```text
    AWS Access Key ID [None]: <your-access-key-id>
    AWS Secret Access Key [None]: <your-secret-access-key>
    Default region name [None]: ap-northeast-1
