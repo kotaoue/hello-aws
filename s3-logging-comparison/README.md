@@ -77,9 +77,11 @@ for handler in logger.handlers:
 
 - 実行方法
 
-  各スクリプト内の `BUCKET_NAME` を自分の S3 バケット名に書き換えてから実行する。
+  `BUCKET_NAME` 環境変数に自分の S3 バケット名を設定してから実行する。
 
   ```bash
+  export BUCKET_NAME=your-log-bucket
+
   # S3Files を使わない場合
   python without_s3files.py
 

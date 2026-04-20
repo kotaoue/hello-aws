@@ -11,19 +11,28 @@ smart_open を使った手法:
 """
 
 import logging
+import os
 import smart_open
 from datetime import datetime, timezone
 
 # ---- 設定 ----
-BUCKET_NAME = "your-log-bucket"
 S3_KEY_PREFIX = "app-logs"
 # --------------
+
+
+def get_bucket_name() -> str:
+    """環境変数から S3 バケット名を取得する。"""
+    bucket_name = os.getenv("BUCKET_NAME")
+    if not bucket_name:
+        raise RuntimeError("環境変数 BUCKET_NAME を設定してください。")
+    return bucket_name
 
 
 def get_s3_uri() -> str:
     """書き込み先の S3 URI を生成する。"""
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    return f"s3://{BUCKET_NAME}/{S3_KEY_PREFIX}/{timestamp}.log"
+    bucket_name = get_bucket_name()
+    return f"s3://{bucket_name}/{S3_KEY_PREFIX}/{timestamp}.log"
 
 
 class S3StreamHandler(logging.StreamHandler):

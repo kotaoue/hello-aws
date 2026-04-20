@@ -19,9 +19,16 @@ import tempfile
 from datetime import datetime, timezone
 
 # ---- 設定 ----
-BUCKET_NAME = "your-log-bucket"
 S3_KEY_PREFIX = "app-logs"
 # --------------
+
+
+def get_bucket_name() -> str:
+    """環境変数から S3 バケット名を取得する。"""
+    bucket_name = os.getenv("BUCKET_NAME")
+    if not bucket_name:
+        raise RuntimeError("環境変数 BUCKET_NAME を設定してください。")
+    return bucket_name
 
 
 def get_s3_key() -> str:
@@ -70,8 +77,9 @@ def main() -> None:
             handler.close()
 
         # 3. S3 へアップロード
+    bucket_name = get_bucket_name()
         s3_key = get_s3_key()
-        upload_to_s3(log_path, BUCKET_NAME, s3_key)
+    upload_to_s3(log_path, bucket_name, s3_key)
 
     finally:
         # 4. 一時ファイルを削除
