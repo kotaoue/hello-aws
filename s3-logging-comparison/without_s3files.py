@@ -77,9 +77,9 @@ def main() -> None:
             handler.close()
 
         # 3. S3 へアップロード
-    bucket_name = get_bucket_name()
+        bucket_name = get_bucket_name()
         s3_key = get_s3_key()
-    upload_to_s3(log_path, bucket_name, s3_key)
+        upload_to_s3(log_path, bucket_name, s3_key)
 
     finally:
         # 4. 一時ファイルを削除
