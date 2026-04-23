@@ -14,7 +14,7 @@ pip install boto3 "smart_open[s3]"
 ### 実行
 
 ```bash
-export BUCKET_NAME=sandbox.kotaoue
+export BUCKET_NAME=sandbox.kota oue
 
 # S3Files を使わない場合
 python without_s3files.py
