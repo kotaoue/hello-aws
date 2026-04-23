@@ -24,7 +24,7 @@ python with_s3files.py
 ## 比較
 
 | | S3Files なし ([without_s3files.py](./without_s3files.py)) | S3Files あり ([with_s3files.py](./with_s3files.py)) |
-|---|---|---|
+| --- | --- | --- |
 | 一時ファイル | 必要 | 不要 |
 | アップロード処理 | 自前で実装 | 不要 |
 | クリーンアップ処理 | 自前で実装 | 不要 |
