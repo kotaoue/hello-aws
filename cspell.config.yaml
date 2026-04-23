@@ -3,8 +3,11 @@ ignorePaths: []
 dictionaryDefinitions: []
 dictionaries: []
 words:
+  - boto
   - dnsmasq
+  - kotaoue
   - resolv
   - tcpdump
+  - venv
 ignoreWords: []
 import: []
