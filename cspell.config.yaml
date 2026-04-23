@@ -7,5 +7,6 @@ words:
   - dnsmasq
   - resolv
   - tcpdump
+  - venv
 ignoreWords: []
 import: []
