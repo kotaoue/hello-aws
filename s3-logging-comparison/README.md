@@ -5,6 +5,7 @@
 ### 事前準備
 
 ```bash
+cd s3-logging-comparison
 pip install boto3 "smart_open[s3]"
 ```
 
