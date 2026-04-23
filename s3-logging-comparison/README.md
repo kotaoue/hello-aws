@@ -7,7 +7,7 @@
 ```bash
 cd s3-logging-comparison
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+source .venv/bin/activate
 pip install boto3 "smart_open[s3]"
 ```
 
